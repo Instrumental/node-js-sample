@@ -1,3 +1,48 @@
+# Instrumental Express Demo Application
+
+This is a demo app showing how to use Instrumental in an Express app. Below you'll see some basic directions and then the original Express Demo README. Feel free to browse the [changes we've made](https://github.com/heroku/node-js-sample/compare/master...Instrumental:master) to see just how easy it is.
+
+Add the Instrumental Agent to `package.json`.
+
+```json
+{
+  "dependencies": {
+    "instrumental-node": "^1.x"
+  },
+}
+```
+
+Run the installation:
+
+```bash
+npm install
+```
+
+Add the Instrumental Agent and configuration to your app:
+
+```js
+var I = require('instrumental-node');
+I.configure({
+  // from here: https://instrumentalapp.com/docs/tokens
+  apiKey:  process.env.INSTRUMENTAL_API_KEY, // 'project_api_token',
+
+  // optional, default shown
+  host:    'collector.instrumentalapp.com',
+
+  // optional, default shown
+  enabled: true,
+});
+```
+
+You can use the `enabled` to enable or disable the agent in different environments.
+
+Now add instrumentation to your app wherever you'd like more info. For instance, if your users can create blog posts, perhaps you'll instrument blog post creation like so:
+```php
+I.increment("blog_post.create");
+```
+
+
+
 # node-js-sample
 
 A barebones Node.js app using [Express 4](http://expressjs.com/).
